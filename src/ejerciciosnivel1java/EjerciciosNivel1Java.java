@@ -84,7 +84,11 @@ public class EjerciciosNivel1Java {
         
         String auxiliar = quitaEspaciosEnBlanco(frase);
         
+        auxiliar = cambiaAcentos(_frase);
+        
+        
         auxiliar = auxiliar.toLowerCase();
+        
         
         
         int indiceIzq = 0;
@@ -160,21 +164,100 @@ public class EjerciciosNivel1Java {
        return aux;
    }
    
+   // aqui va la parte 2 de los ejercicios 
+   
+   
+   // EJERCICIO 1 PARTE 2 Acronimos: 
+   /**
+    * este metodo recive un string formado por varias palabras y devuelve el acronimo de todas las palabras.
+    * 
+    */
+   
+   
+   
+   public String[] divideFrase(String frase){
+       
+       String aux = "";
+       
+       int numEspaciosBlanco = 0;
+       
+       for (int i = 0; i < frase.length(); i++){
+           
+           if (frase.charAt(i) == ' '){
+               numEspaciosBlanco ++;
+           }
+           
+       }
+       
+       String[] dividido = new String[numEspaciosBlanco + 1];
+       
+       int contadorPalabra = 0;
+       
+       for (int i = 0; i < frase.length(); i++){
+           
+           if (frase.charAt(i) == ' '){
+               
+               dividido[contadorPalabra] = aux;
+               aux = "";
+               contadorPalabra ++; 
+           }else{
+               aux += frase.charAt(i);
+           }
+       }
+       dividido[contadorPalabra] = aux;
+       
+       return dividido;
+   }
+   /**
+    * recibe frase y devuelve acronimo
+    * @param frase
+    * @return 
+    */
+   public String acronimo(String frase){
+       
+       frase = frase.toLowerCase();
+       
+       String [] palabras = divideFrase(frase);
+       
+       String aux = "";
+       
+       for(int i = 0; i < palabras.length; i++ ){
+           
+           if(palabras[i].length() > 0){
+           if( palabras[i].equals ("y") || palabras[i].equals ("e") || palabras[i].equals ("la") || palabras[i].equals ("las") || palabras[i].equals ("de") || palabras[i].equals (" ")){
+               
+           
+           }else{
+               aux += palabras[i].charAt(0);
+           }
+           }
+       }
+       
+        aux = aux.toUpperCase();
+       
+       return aux;
+   }
+   
+   
+   
+   
     
     public static void main(String[] args) {
         EjerciciosNivel1Java ejercicio = new EjerciciosNivel1Java();
         
         
         
-        // EJERCICIO 1 del system out
-        System.out.println("Los valores maximos son: " + Arrays.toString(ejercicio.maximo(ejercicio.listaNumeros))); // Paso el array a string pq si no peta con la frase del principio ;))
-    
-        //Ejercicio 2 del System out 
-        System.out.println("La Frase es Palíndromo: " + (ejercicio.palIndromo(ejercicio.frase))); // accedo a la variable de instancia forzandolo mediante un puntero de objeto que le haga referencia para que este reservado en memoria
+//        // EJERCICIO 1 del system out
+//        System.out.println("Los valores maximos son: " + Arrays.toString(ejercicio.maximo(ejercicio.listaNumeros))); // Paso el array a string pq si no peta con la frase del principio ;))
+//    
+//        //Ejercicio 2 del System out 
+//        System.out.println("La Frase es Palíndromo: " + (ejercicio.palIndromo(ejercicio.frase))); // accedo a la variable de instancia forzandolo mediante un puntero de objeto que le haga referencia para que este reservado en memoria
+//        
+//        System.out.println("palabra junta " + (ejercicio.quitaEspaciosEnBlanco(ejercicio.frase)));
+//        
+//        System.out.println("Esta palabra es isodromo si sale true, si no te jode y bailas: " + (ejercicio.isodromo("murcielagoé")));
         
-        System.out.println("palabra junta " + (ejercicio.quitaEspaciosEnBlanco(ejercicio.frase)));
-        
-        System.out.println("Esta palabra es isodromo si sale true, si no te jode y bailas: " + (ejercicio.isodromo("murcielagoé")));
+       System.out.println((ejercicio.acronimo("Centro de Estudios Tecnológicos Y  Sociales")));
     }
 
 }
