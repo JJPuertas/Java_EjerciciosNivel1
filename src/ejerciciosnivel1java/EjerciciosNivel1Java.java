@@ -238,9 +238,150 @@ public class EjerciciosNivel1Java {
        return aux;
    }
    
+   // EJERCICIO 2  PARTE 2
+   /**
+    * si es anagrama devuelve true si no false 
+    * @param p1 
+    * @param p2 
+     * @return  
+    */
+   
+   public boolean anagrama(String p1, String p2){
+       
+      p1 = quitaEspaciosEnBlanco(p1);
+      p2 = quitaEspaciosEnBlanco(p2);
+                                        //Vamos quitando las letras no convenientes para el anagrama 
+      p1 = cambiaAcentos(p1);
+      p2 = cambiaAcentos(p2); 
+      
+      p1 = p1.toLowerCase();
+      p2 = p2.toLowerCase();
+      
+      //String comprobacion = "";
+      
+      if( p1.length() != p2.length()){
+          return false; // no tienen nuemro de letras iguales por lo que no es anagrama 
+      }
+      if(p1.length() == 0 || p2.length() == 0){
+          return false;
+      } 
+      
+       for(int i = 0; i < p1.length(); i++){
+           
+           if(p2.contains("" + p1.charAt(i))){
+               // Busco donde esta la letra y luego hago algo con ella
+       
+            p2 = p2.replaceFirst ((String.valueOf(p1.charAt(i))) , ("-"));
+
+           
+           }else{
+               return false;
+           }   
+       }
+       
+       
+       
+       return true;
+   }
    
    
+   // EJERCICIO 3 PARTE 2 
    
+   /**
+    * 
+    * @param dia  // DIAS NO CONTADOS PARA QUE EMPIECE EL MES  
+    */
+   public void calendario(int dia){
+       // PRIMERA PARTE: IMPRIMIR LAS XX 
+       
+       dia = dia % 7;
+       
+      // int[] calen = new int[34];
+       
+       for(int i = 0; i<dia ; i++){
+           System.out.print("XX ");
+           
+       }
+       
+       // SEGUNDA PARTE: IMPRIMIR DEL 1 AL 31
+       
+       int contador = dia +1; 
+       
+       for(int i = 1; i<=31; i++){
+           
+           if(i < 10) {
+               if (contador%7 == 0){
+                   System.out.println("0" + i + " ");
+                   
+               }
+               else{
+               System.out.print("0" + i + " ");
+               
+               }
+           }
+           else{
+               
+               if (contador%7 == 0){
+                   System.out.println(i + " ");
+                   
+               }
+               else{System.out.print(i + " ");
+                
+               }
+            }
+           contador++;
+       }
+       
+     
+//       //3º fase: dibujar las XX finales
+//            while(contador % 7 !=0){
+//                System.out.print("XX");
+//                contador++;
+//            }
+
+       
+       
+       
+       // SI EL DIA ES DIVISOR DE 7 ME SOBRAN 4 espacios para poner xx 
+       
+//        if(dia == 0){
+//           System.out.print("XX ");
+//           System.out.print("XX ");
+//           System.out.print("XX ");
+//           System.out.print("XX ");
+//        }
+//        if(dia == 1){
+//           System.out.print("XX ");
+//           System.out.print("XX ");
+//           System.out.print("XX ");
+//          
+//        }
+//        if(dia == 2){
+//           System.out.print("XX ");
+//           System.out.print("XX ");
+//           
+//        }
+//        if(dia == 3){
+//           System.out.print("XX ");
+//           
+//        }
+//        
+//        if(dia == 5){
+//           System.out.print("XX ");
+//           System.out.print("XX ");
+//           System.out.print("XX ");
+//           System.out.print("XX ");
+//           System.out.print("XX ");
+//           System.out.print("XX ");
+//        }
+//        if(dia == 6){
+//           System.out.print("XX ");
+//           System.out.print("XX ");
+//           System.out.print("XX ");
+//           System.out.print("XX ");
+//           System.out.print("XX ");
+//        }
+   }
     
     public static void main(String[] args) {
         EjerciciosNivel1Java ejercicio = new EjerciciosNivel1Java();
@@ -256,8 +397,13 @@ public class EjerciciosNivel1Java {
 //        System.out.println("palabra junta " + (ejercicio.quitaEspaciosEnBlanco(ejercicio.frase)));
 //        
 //        System.out.println("Esta palabra es isodromo si sale true, si no te jode y bailas: " + (ejercicio.isodromo("murcielagoé")));
-        
-       System.out.println((ejercicio.acronimo("Centro de Estudios Tecnológicos Y  Sociales")));
+            
+          System.out.println((ejercicio.acronimo("Centro de Estudios Tecnológicos Y  Sociales")));
+          
+          System.out.println("Si es True significa que si que es anagrama: " + ejercicio.anagrama("rO má", "aM ór"));
+       
+          
+          ejercicio.calendario(0b101110100010100111010010);
     }
 
 }
